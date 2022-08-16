@@ -1,7 +1,12 @@
 import { useState } from "react";
+
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 export default function CreateUser(){
+
+    const navigate = useNavigate();
 
     //maintain state of input boxes
     const [inputs, setInputs] =useState({});
@@ -17,8 +22,11 @@ export default function CreateUser(){
     const handleSubmit = (event) =>{
         event.preventDefault();
         
-        axios.post('http://localhost/usertestapi/user/save', inputs)
-        console.log(inputs);
+        axios.post('http://localhost/usertestapi/user/save', inputs).then(function(response){
+            console.log(response.data);
+            navigate('/');
+        });
+   
     }
 
     return (
