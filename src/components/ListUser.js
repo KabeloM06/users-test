@@ -17,6 +17,14 @@ export default function ListUser(){
             setUsers(response.data)
         });
     }
+
+    // Delete user
+    const deleteUser = (id) => {
+        axios.delete(`http://localhost/usertestapi/user/${id}/delete`).then(function(response){
+            console.log(response.data)
+            getUsers();
+        })
+    }
     
     return (
         <div>
@@ -40,7 +48,7 @@ export default function ListUser(){
                             <td>{user.mobile}</td>
                             <td>
                                 <Link to={`user/${user.id}/edit`} style={{marginRight: "1rem"}}>Edit</Link>
-                                <button>Delete</button>
+                                <button onClick={() => deleteUser(`react-crud`.id)}>Delete</button>
                             </td>
                         </tr>
                     )}
